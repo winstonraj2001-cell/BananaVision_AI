@@ -12,6 +12,33 @@ import plotly.express as px
 from PIL import Image
 from tensorflow.keras.models import load_model
 from datetime import datetime
+import gdown
+import os
+
+# ==========================================================
+# DOWNLOAD MODELS FROM GOOGLE DRIVE
+# ==========================================================
+
+MODEL_LINKS = {
+    "banana_ripeness_cnn.keras": "1RjS2eBKcjJJdtQ9Jla6e50TADBY9mec3",
+    "efficientnetb0.keras": "1LaGkk__29EQVpeiwTJ45dTqy-ubZz-2r",
+    "mobilenetv2.keras": "1KbHxm-IfgtoC6BGC-qgpHN8DNeLP_24z",
+    "resnet50.keras": "1u-yxI8Z7MPPn0aCKSOCmEybfTfcBaXgy"
+}
+
+os.makedirs("models", exist_ok=True)
+
+for filename, file_id in MODEL_LINKS.items():
+
+    model_path = os.path.join("models", filename)
+
+    if not os.path.exists(model_path):
+
+        with st.spinner(f"Downloading {filename}..."):
+
+            url = f"https://drive.google.com/uc?id={file_id}"
+
+            gdown.download(url, model_path, quiet=False)
 
 # ============================================================
 # PAGE CONFIGURATION
