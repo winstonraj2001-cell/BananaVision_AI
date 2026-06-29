@@ -8,3 +8,4 @@ Pillow
 plotly
 scikit-learn
 reportlab
+gdown
